@@ -46,8 +46,8 @@ alert(user5.canEdit);
 
 // If the copied property name already exists, it gets overwritten:
 
-let user6 = {name: "John"};
-Object.assign(user6, {name: "Pete"});
+let user6 = { name: "John" };
+Object.assign(user6, { name: "Pete" });
 alert(user.name);
 
 //We also can use Object.assign to perform a simple object cloning:
@@ -60,4 +60,28 @@ alert(clone.name);
 alert(clone.age);
 
 //Nested cloning
+let user7 = {
+    name: "John",
+    sizes = {
+        height: 20,
+        width: 30,
+    },
+};
+let clone2 = Object.assign({}, user7);
+alert(user7.sizes.width);
+alert(user7.sizes === clone2.sizes);
+user7.sizes.height = 25;
+alert(clone2.sizes.height);
 
+//structuredClone
+let user8 = {
+    name: "John",
+    sizes = {
+        height: 30,
+        width: 20
+    },
+};
+let clone3 = structuredClone(user8);
+alert(user8.sizes===clone3.sizes);
+user8.sizes.width = 25;
+alert(clone.sizes.width);
