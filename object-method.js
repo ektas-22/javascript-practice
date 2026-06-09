@@ -51,3 +51,31 @@ let user5 = {
     }
 };
 user5.sayHi();
+
+//abvoe code unreliable eg shown below
+let user6 = {
+    name : "John",
+    age :  30,
+    sayHi(){
+        alert(user6.name);          // this.name would work properly
+        //alert(this.name);
+    }
+};
+let admin = user6;
+user6 = null;
+admin.sayHi();
+
+//"this" is not bound
+let user7 = { name:"John"};
+let admin2 = {name : "peter"};
+function sayHii(){
+    alert(this.name);
+}
+
+user7.f = sayHii;
+admin2.f = sayHii;
+
+user7.f();
+admin2.f();
+
+admin2['f']();
