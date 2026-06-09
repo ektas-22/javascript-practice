@@ -79,3 +79,61 @@ user7.f();
 admin2.f();
 
 admin2['f']();
+
+//arrow function does not have its own this
+let user8 = {
+    name : "John",
+    sayHi(){
+        let arrow = () => alert(this.name);
+        arrow();
+    }
+}
+user8.sayHi();
+
+//TASK
+//1 - using this in object literal
+function makeUser(){
+    return{
+        name : "John",
+        ref : this
+    };
+}
+let user9 = makeUser();
+alert(user9.ref.name)
+// o/p ??
+
+//2 - create calculator
+
+let calculator = {
+    a: 0,
+    b: 0,
+    read(){
+        this.a = Number(prompt("Enter a"));
+        this.b = Number(prompt("Enter b"));
+       
+    },
+    sum(){
+        return   this.a + this.b;
+        
+    },
+    mul(){
+        return this.a * this.b;
+    }
+};
+calculator.read();
+alert(calculator.sum());
+alert(calculator.mul());
+
+//3 - chaining
+let ladder = {
+  step: 0,
+  up() {
+    this.step++;
+  },
+  down() {
+    this.step--;
+  },
+  showStep: function() { // shows the current step
+    alert( this.step );
+  }
+};
