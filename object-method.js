@@ -100,7 +100,7 @@ function makeUser(){
 }
 let user9 = makeUser();
 alert(user9.ref.name)
-// o/p ??
+// o/p ??  // Error: Cannot read property 'name' of undefined
 
 //2 - create calculator
 
@@ -137,3 +137,11 @@ let ladder = {
     alert( this.step );
   }
 };
+ladder.up();
+ladder.up();
+ladder.down();
+ladder.showStep(); // 1
+ladder.down();
+ladder.showStep(); // 0
+
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
