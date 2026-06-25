@@ -121,10 +121,44 @@ console.log('Österreich'.localeCompare('Zealand'));     //-1
 // Tasks
 // Uppercase the first character  - ucFirst("john") == "John";
 function ucFirst(str){
-      return str.substring(0,1).toUpperCase()+str.substring(1);
+    //   return str.substring(0,1).toUpperCase()+str.substring(1);
+     if (!str) return str;
+    return str[0].toUpperCase() + str.slice(1);
 }
 console.log(ucFirst('john'));
 
+//Check for spam
+function checkSpam(str){
+    // if(str.toLowerCase().includes('viagra')||str.toUpperCase().includes('XXX')){
+    //     return true;
+    // }else{
+    //     return false;
+    // }
+     let lowerStr = str.toLowerCase();
+
+  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+}
+console.log(checkSpam('buy ViAgRA now')); //== true
+console.log(checkSpam('free xxxxx')); //== true
+console.log(checkSpam("innocent rabbit"))   //== false
+
+
+//Truncate the text
+function truncate(str, maxlength){
+    if(str.length>maxlength){
+        return str.substring(0, maxlength-1)+"...";
+    }
+    return str;
+}
+
+console.log(truncate("What I'd like to tell on this topic is:", 20));  // == "What I'd like to te…"
+console.log(truncate("Hi everyone!", 20));  // == "Hi everyone!"
+
+//Extract the money
+function extractCurrencyValue(str){
+    return str.substring(1);
+}
+alert( extractCurrencyValue('$120') === 120 ); // true - === 120 
 
 
 
