@@ -146,7 +146,7 @@ console.log(checkSpam("innocent rabbit"))   //== false
 //Truncate the text
 function truncate(str, maxlength){
     if(str.length>maxlength){
-        return str.substring(0, maxlength-1)+"...";
+        return str.slice(0, maxlength-1)+"...";
     }
     return str;
 }
@@ -156,7 +156,7 @@ console.log(truncate("Hi everyone!", 20));  // == "Hi everyone!"
 
 //Extract the money
 function extractCurrencyValue(str){
-    return str.substring(1);
+    return str.slice(1);
 }
 alert( extractCurrencyValue('$120') === 120 ); // true - === 120 
 
