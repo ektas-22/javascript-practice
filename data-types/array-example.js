@@ -145,14 +145,100 @@ alert( "" + 1 ); // "1"
 alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 
+//Don’t compare arrays with ==
+alert( [] == [] ); // false
+alert( [0] == [0] ); // false
+
+alert( 0 == [] ); // true
+alert('0' == [] ); // false
+
+// after [] was converted to ''
+alert( 0 == '' ); // true, as '' becomes converted to number 0
+alert('0' == '' ); // false, no type conversion, different strings
+
+
+//TASK
+//Is array copied?
+let fruits = ["Apples", "Pear", "Orange"];
+// push a new value into the "copy"
+let shoppingCart = fruits;
+shoppingCart.push("Banana");
+// what's in fruits?
+alert( fruits.length ); // ?
+//Answer = 4
+
+//Array Operations
+let styles =["Jazz","Blues"];
+styles.push("Rock-n-Roll");
+console.log(styles);
+let index = Math.floor((styles.length)/2);
+styles[index] = "Classic";
+console.log(styles);
+console.log(styles.shift());
+styles.unshift("Rap","Reggae");
+console.log(styles);
 
 
 
+//Calling in an array context
+let arr = ["a", "b"];
+arr.push(function() {
+  alert( this );
+});
+arr[2](); // ?
+//Output - ["a","b",""];
 
 
+//Sum input numbers
+function  sumInput(){
+    let arr =[prompt("Enter value. ")];
+    let sum = 0;
+    if(!arr.isNaN && arr.isEmpty()){
+        for(let i =0; i<arr.length; i++){
+            sum = sum +  arr[i];
+        }
+        return sum;
+    } 
+}
 
 
+//A maximal subarray
+//slow -solution
+function getMaxSubSum(arr) {
+  let maxSum = 0; // if we take no elements, zero will be returned
 
+  for (let i = 0; i < arr.length; i++) {
+    let sumFixedStart = 0;
+    for (let j = i; j < arr.length; j++) {
+      sumFixedStart += arr[j];
+      maxSum = Math.max(maxSum, sumFixedStart);
+    }
+  }
+
+  return maxSum;
+}
+
+
+//fast - solution 
+function getMaxSubSum(arr) {
+  let maxSum = 0;
+  let partialSum = 0;
+
+  for (let item of arr) { // for each item of arr
+    partialSum += item; // add it to partialSum
+    maxSum = Math.max(maxSum, partialSum); // remember the maximum
+    if (partialSum < 0) partialSum = 0; // zero if negative
+  }
+
+  return maxSum;
+}
+
+getMaxSubSum([-1, 2, 3, -9])              //== 5   //(the sum of highlighted items)
+getMaxSubSum([2, -1, 2, 3, -9])            //== 6
+getMaxSubSum([-1, 2, 3, -9, 11])        //== 11
+getMaxSubSum([-2, -1, 1, 2])            //== 3
+getMaxSubSum([100, -9, 2, -3, 5])       //== 100
+getMaxSubSum([1, 2, 3])                 //== 6 (take all)
 
 
 
